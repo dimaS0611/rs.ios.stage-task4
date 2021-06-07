@@ -2,11 +2,11 @@ import Foundation
 
 typealias CallID = UUID
 
-struct Call {
+struct Call: Hashable {
     let id: CallID
     let incomingUser: User
     let outgoingUser: User
-    let status: CallStatus
+    var status: CallStatus
 }
 
 enum CallEndReason: Equatable {
@@ -16,7 +16,7 @@ enum CallEndReason: Equatable {
     case error
 }
 
-enum CallStatus: Equatable {
+enum CallStatus: Equatable, Hashable {
     case calling
     case talk
     case ended(reason: CallEndReason)
